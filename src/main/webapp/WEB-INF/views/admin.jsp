@@ -87,9 +87,9 @@
                             </li>
                             <li class="parent"><a href="#"><i class="icon mdi mdi-face"></i><span>CARTE SIM</span></a>
                                 <ul class="sub-menu">
-                                    <li><a href="#"><i class="icon mdi mdi-comment-edit"></i> Cartes disponibles </a>
+                                    <li><a href="/admin/cartedisp"><i class="icon mdi mdi-comment-edit"></i> Cartes disponibles </a>
                                     </li>
-                                    <li><a href="#"><i class="icon mdi mdi-format-line-spacing"></i> Demandes </a>
+                                    <li><a href="/admin/cartedemande"><i class="icon mdi mdi-format-line-spacing"></i> Demandes </a>
                                     </li>
 
                                 </ul>
@@ -97,22 +97,22 @@
                             <li class="parent"><a href=""><i
                                     class="icon mdi mdi-comment-edit"></i><span>RECHARGES</span></a>
                                 <ul class="sub-menu">
-                                    <li><a href="#e"> <i class="icon mdi mdi-comment-edit"></i> Demandes reçues</a>
+                                    <li><a href="/admin/demanderecharge"> <i class="icon mdi mdi-comment-edit"></i> Demandes reçues</a>
                                     </li>
 
-                                    <li><a href="#"><i class="icon mdi mdi-receipt"></i>Packs</a>
+                                    <li><a href="/admin/packs"><i class="icon mdi mdi-receipt"></i>Packs</a>
                                     </li>
                                 </ul>
                             </li>
                             <li class="parent"><a href="#"><i
                                     class="icon mdi mdi-dot-circle"></i><span>LOG</span></a>
                                 <ul class="sub-menu">
-                                    <li><a href="#"> <i class="icon mdi mdi-accounts-list"></i> Historique</a>
+                                    <li><a href="/admin/log"> <i class="icon mdi mdi-accounts-list"></i> Historique</a>
                                     </li>
 
                                 </ul>
                             </li>
-                            <li class=""><a href="#"><i
+                            <li class=""><a href="/admin/account"><i
                                     class="icon mdi mdi-view-headline"></i><span>ACCOUNTS</span></a>
 
                             </li>

@@ -1,0 +1,80 @@
+<div ng-controller="CompaignController">
+
+
+    <div class="panel panel-default panel-border-color panel-border-color-success">
+        <div class="panel-heading"></div>
+        <div class="panel-body">
+            <form>
+                <div class="form-group">
+                    <label for="sel1">choisir un source:</label> <select
+                        ng-model="idSimCard" class="form-control" id="sel1">
+
+
+                    <option ng-repeat="simcard in simCards "
+                            value="{{simcard.idSimCard}}">{{simcard.simNumber}}
+                    </option>
+
+
+                </select>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="sel1">choisir les contacts :</label> <select
+                                ng-change="update()" multiple="multiple" ng-model="selected"
+                                class="form-control" id="sel1">
+
+                            <option ng-repeat="phone in phones " value="{{phone.idPhone}}">{{phone.phoneNumber}}
+                                :[{{phone.clientName}}]
+                            </option>
+
+                        </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="sel1">choisir une template :</label> <select
+                                ng-change="setTemplate()" ng-model="template"
+                                class="form-control" id="sel1">
+
+
+                            <option ng-repeat="template in templates " value="{{template}}">{{template.name}}
+                            </option>
+
+
+                        </select>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+                <div class="form-group">
+
+                    <div class="be-checkbox">
+                        <button class="btn btn-success" ng-click="normal()">normal</button>
+                        <button class="btn btn-primary" ng-click="ToArabic()">arabic</button>
+                    </div>
+                    <label for="recipient-name" class="control-label">error</label>
+                    <textarea id="error" ng-keypress="showRest()"
+                              limit-to="{{limit}}" type="text" ng-model="error"
+                              class="form-control" id="recipient-name" placeholder="error"></textarea>
+                    <p class="text-danger helper">you still can type {{rest}}
+                        character.</p>
+                    <p class="text-danger helper">( {{nbMsg}} ) Messages.</p>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" ng-model="date3" datetime-picker
+                           date-format="yyyy-MM-dd HH:mm:ss"/>
+                </div>
+
+                <button ng-click="saveCompaign()" class="btn btn-space-success">send</button>
+            </form>
+
+
+        </div>
+    </div>
+</div>

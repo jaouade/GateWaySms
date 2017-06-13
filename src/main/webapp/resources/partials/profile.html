@@ -1,0 +1,58 @@
+
+
+          <div class="user-profile" ng-controller="ProfileController">
+            <div class="row">
+              <div class="col-md-10">
+                <div class="user-display">
+                  <div class="user-display-bg"><img src="https://images.alphacoders.com/441/thumb-1920-441809.jpg" alt="Profile Background"></div>
+                  <div class="user-display-bottom">
+                    <div class="user-display-avatar"><img src="https://images.alphacoders.com/441/thumb-1920-441809.jpg" alt="Avatar"></div>
+                    <div class="user-display-info">
+                      <div class="name">{{account.client.name}}</div>
+                      <div class="nick"><span class="mdi mdi-account"></span> {{account.client.email}}</div>
+                    </div>
+                    <div class="row user-display-details">
+                      <div class="col-xs-6">
+                        <div class="title">messages</div>
+                        <div class="counter">{{account.smsCredit}}</div>
+                      </div>
+                      <div class="col-xs-6">
+                        <div class="title"> Credit</div>
+                        <div class="counter">{{account.client.remaining_credit}}</div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="user-info-list panel panel-default">
+                  <div class="panel-heading panel-heading-divider">About Me</div>
+                  <div class="panel-body">
+                    <table class="no-border no-strip skills">
+                      <tbody class="no-border-x no-border-y">
+                        <tr>
+                          <td class="icon"><span class="mdi mdi-case"></span></td>
+                          <td class="item">Corp:<span class="icon s7-portfolio"></span></td>
+                          <td>{{account.client.corp_name}}</td>
+                        </tr>
+
+                        <tr>
+                          <td class="icon"><span class="mdi mdi-smartphone-android"></span></td>
+                          <td class="item">Mobile<span class="icon s7-phone"></span></td>
+                          <td>{{account.client.phone}}</td>
+                        </tr>
+                        <tr>
+                          <td class="icon"><span class="mdi mdi-globe-alt"></span></td>
+                          <td class="item">Location<span class="icon s7-map-marker"></span></td>
+                          <td>{{account.client.city.cityName}}</td>
+                        </tr>
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+

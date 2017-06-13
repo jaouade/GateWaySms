@@ -1,0 +1,134 @@
+<div ng-controller="SMSController">
+
+    <script type="text/javascript">
+        var numbers = [];
+        $.ajax({
+            url: "../phoneNumber/getAllPhoneNumberByPhoneBookAndAccount",
+            method: "POST",
+            dataType: "json",
+            success: function (data) {
+                $.each(data, function (index, obj) {
+                    numbers.push(obj["phoneNumber"])
+                });
+                $("#autocomplete").autocomplete({
+                    source: numbers
+                });
+            }
+
+        });
+
+
+    </script>
+
+    <div ng-show="errFrm" role="alert" class="alert alert-contrast alert-danger alert-dismissible">
+    <div class="icon"><span class="mdi mdi-alert-triangle"></span></div>
+    <div class="error">
+        <button type="button" data-dismiss="alert" aria-label="Close" class="close">
+            <span aria-hidden="true" class="mdi mdi-close"></span></button>
+        <strong>Error !</strong>you must fill al fields that ar required to be able to send your error !!
+    </div>
+</div>
+    <div class="panel panel-default panel-border-color panel-border-color-success">
+        <div class="panel-heading">
+        </div>
+        <div class="panel-body">
+            <form name="sms">
+
+                <div class="form-group">
+                    <label ng-required="true" for="sel1">choisir un source:</label> <select ng-model="idSimCard" class="form-control"
+                                                                         id="sel0">
+
+
+                    <option ng-repeat="simcard in simCards " value="{{simcard.idSimCard}}">{{simcard.simNumber}}
+                    </option>
+
+
+                </select>
+                </div>
+                <div class="form-group">
+                    <div class="form-group">
+                        <label for="autocomplete" class="control-label">contact</label>
+                        <input ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/"
+                               name="number" type="text" id="autocomplete"  ng-model="phoneFromInput"
+                               class="form-control"
+                               placeholder="you can type a phone number here or pick one from the list"/>
+                        <p class="text-danger helper" ng-show="error">enter a valid phone number .</p>
+                            <span class=" text-danger help-block" ng-show="sms.number.$invalid">heloo</span>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="sel1">choisir une destination :</label> <select  name="phones" ng-required="true" ng-model="idPhone" multiple="multiple"
+                                                                                            class="form-control"
+                                                                                            id="sel">
+
+
+                                <option ng-click="changeItsPLace(phone)"  ng-repeat="phone in phones " id="{{phone.idPhone}}" value="{{phone.idPhone}}">{{phone.clientName}}:>{{phone.phoneNumber}}
+                                </option>
+
+                            </select>
+                                                                <label for="selectedPhones">selected contacts</label><select  ng-model="idPhone" multiple="multiple"
+                                                                  class="form-control"
+                                                                  id="selectedPhones">
+
+                                </select>
+                            </div>
+                            <span class="text-danger help-block" ng-show="sms.phones.$invalid">this is required !!</span>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="sel1">choisir une template :</label> <select ng-change="setTemplate()"
+                                                                                         ng-model="template"
+                                                                                         class="form-control"
+                                                                                         id="sel1">
+
+
+                                <option ng-repeat="template in templates " value="{{template}}">{{template.name}}
+                                </option>
+
+
+                            </select>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <div class="be-checkbox">
+                            <button class="btn btn-success" ng-click="normal()">normal</button>
+                            <button class="btn btn-primary" ng-click="ToArabic()">arabic</button>
+                        </div>
+                        <label for="message" class="control-label">message</label>
+                        <textarea ng-required="true" name="message" id="message" ng-keypress="showRest()" limit-to="{{limit}}"
+                                  ng-model="message" class="form-control"
+                                  placeholder="message"></textarea>
+                        <span class="text-danger help-block" ng-show="sms.message.$invalid">this is required !!</span>
+                        <p class="text-success helper">you still can type {{rest}} character.</p>
+                        <p class="text-success helper">( {{nbMsg}} ) Messages.</p>
+                    </div>
+                    <div class="form-group">
+                        <input ng-required="true" name="date" class="form-control" ng-model="date3" datetime-picker date-format="yyyy-MM-dd HH:mm:ss"/>
+                        <span class="text-danger help-block" ng-show="sms.date.$invalid">this is required !!</span>
+                    </div>
+
+
+                    <div class="form-group login-submit">
+                        <button  type="button" ng-click="sendSMS()" class="btn btn-success">Send</button>
+                    </div>
+            </form>
+        </div>
+    </div>
+
+
+</div>
+
+       
+
+
+
+
+
+

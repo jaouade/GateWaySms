@@ -1,0 +1,111 @@
+<div ng-controller="PhoneBookController">
+
+    <button ng-click="showAddModal()" class="btn btn-space btn-primary"><i
+            class="icon icon-left mdi mdi-cloud-done"></i>add New PhoneBook
+    </button>
+
+
+    <div class="row">
+        <!--Responsive table-->
+        <div class="col-sm-12">
+            <div class="panel panel-default panel-table">
+                <div class="panel-heading">Responsive Table
+                    <div class="tools"><span class="icon mdi mdi-download"></span><span
+                            class="icon mdi mdi-more-vert"></span></div>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive noSwipe">
+                        <table id="table" class="table table-striped table-hover">
+                            <thead>
+                            <tr>
+
+
+                                <th style="width:20%;">name</th>
+                                <th style="width:30%;"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="phoneBook in phoneBooks" id="{{phoneBook.idPhoneBook}}">
+                                <td class="cell-detail"><span>{{phoneBook.bookName}}</span></td>
+                                <td class="text-right">
+                                    <div class="btn-group btn-space">
+                                        <button ng-click="deletePhoneBook(phoneBook)" type="button"
+                                                class="btn btn-danger"><i class="icon mdi mdi-delete"></i></button>
+                                        <button type="button" class="btn btn-warning" ng-click="showEdit(phoneBook)"><i
+                                                class="icon mdi mdi-edit"></i></button>
+                                        <a type="button" class="btn btn-warning"
+                                           href="#!/phoneBook/edit/{{phoneBook.idPhoneBook}}"><i
+                                                class="icon mdi mdi-edit"></i></a>
+
+                                    </div>
+
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="exampleModalLabel"> Edit</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="recipient-name" class="control-label">Name</label>
+                            <input type="text" ng-model="bookNameEdit" class="form-control" id="recipient-name"
+                                   placeholder="Name">
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" ng-click="editPhoneBook()" class="btn btn-success">Edit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="exampleModalLabel"> Edit</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="recipient-name" class="control-label">Name</label>
+                            <input type="text" ng-model="bookName" class="form-control" id="recipient-name"
+                                   placeholder="Name">
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" ng-click="addPhoneBook()" class="btn btn-success">Create</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+
+

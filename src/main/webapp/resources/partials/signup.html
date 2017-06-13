@@ -1,0 +1,121 @@
+<div ng-controller="SignupController">
+
+    <form>
+        <p ng-if="error" class="alert alert-danger">{{errorMsg}}</p>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">corp name</label>
+                    <input type="text" ng-model="corp_name" class="form-control" id="exampleInputEmail1"
+                           placeholder="corp name"/>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="exampleInputEmail1"> name</label> <input type="text"
+                                                                         ng-model="name" class="form-control"
+                                                                         id="exampleInputEmail1"
+                                                                         placeholder=" name">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="exampleInputEmail1"> postal code</label> <input
+                        type="text" ng-model="postal_code" class="form-control"
+                        id="exampleInputEmail1" placeholder=" postal code">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="exampleInputEmail1"> email</label> <input type="text"
+                                                                          ng-model="email" class="form-control"
+                                                                          id="exampleInputEmail1"
+                                                                          placeholder=" email">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="exampleInputEmail1"> adresse</label> <input
+                        type="text" ng-model="adresse" class="form-control"
+                        id="exampleInputEmail1" placeholder="adresse">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="exampleInputEmail1"> phone</label> <input
+                        type="text" ng-model="phone" class="form-control"
+                        id="exampleInputEmail1" placeholder=" phone">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-md-4">
+
+                <div class="form-group">
+                    <label for="fax"> fax</label> <input
+                        type="text" ng-model="fax" class="form-control"
+                        id="fax" placeholder="fax">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="sel1">choisir un ville:</label> <select ng-model="idCity" class="form-control"
+                                                                        id="sel1">
+
+
+                    <option ng-repeat="city in cities " value="{{city.idCity}}">{{city.cityName}}</option>
+
+
+                </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="sel1">choisir un secteur:</label> <select ng-model="idSector" class="form-control"
+                                                                          id="sel1">
+
+                    <option ng-repeat="sector in sectors " value="{{sector.idSector}}">{{sector.sectorName}}</option>
+
+                </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">login </label> <input
+                        type="text" ng-model="login" class="form-control"
+                        id="exampleInputEmail1" placeholder="login">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="exampleInputEmail1"> password</label> <input
+                        type="password" ng-model="password" class="form-control"
+                        id="exampleInputEmail1" placeholder="password">
+                </div>
+            </div>
+        </div>
+
+        <button ng-click="signup()" type="button" class="btn btn-success">Sign
+            up
+        </button>
+
+
+    </form>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+

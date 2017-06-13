@@ -39,8 +39,11 @@ public class RestClient {
     @Qualifier("sectordao")
     private ISectorDao secDao;
     @Autowired
-    @Qualifier("rechargesimdao")
-    private IRechargeSimDao rechdao;
+    @Qualifier("smspricedao")
+    private ISmsPriceDao iSmsPriceDao;
+    @Autowired
+    @Qualifier("smsorderdao")
+    private ISmsOrderDao iSmsOrderDao;
 
 
     @Autowired
@@ -164,26 +167,36 @@ public class RestClient {
     }
 
     @RequestMapping(value = "placeOrder", method = RequestMethod.POST)
-    public ResponseEntity<?> addsc(@RequestBody RechargeSim rechsim, HttpSession session) {
-        rechsim.setDateRecharge(new Date());
-        rechsim.setEtat(0);
-        if (rechdao.save(rechsim) != null) {
-            return new ResponseEntity<>(rechsim, HttpStatus.ACCEPTED);
-        }
-        return new ResponseEntity<>("error", HttpStatus.NOT_FOUND);
+    public ResponseEntity<?> placeOrder(@RequestBody SmsOrder order, HttpSession session) {
+            order.setSmsPrice(iSmsPriceDao.getAll().get(0));
+            order.setAccount((Account) session.getAttribute("account"));
+            order.setState(false);
+            order.setStatus("not activated");
+            order.setTva(0.14);
+            SmsPrice price= order.getSmsPrice();
+            order.setTotalTtc((price.getUnitPrice()*price.getTva() +price.getUnitPrice())*order.getQuantity()*order.getTva()+(price.getUnitPrice()*price.getTva() +price.getUnitPrice())*order.getQuantity());
+            order.setOrderDate(new Date());
+            if(Objects.nonNull(iSmsOrderDao.save(order))){
+                return new ResponseEntity<>(new JsonService.Success("we have placed your order",order), HttpStatus.ACCEPTED);
+            }else {
+
+                return new ResponseEntity<>(new JsonService.Error("we cannot proceed the operation for the moment try later :(",order), HttpStatus.NOT_FOUND);
+            }
+
+
+
 
     }
 
     private String getSaltString() {
-        String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1abcdefghijklmnopqrstuvwxyz234567890";
+        String SalTChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1abcdefghijklmnopqrstuvwxyz234567890";
         StringBuilder salt = new StringBuilder();
         Random rnd = new Random();
         while (salt.length() < 180) { // length of the random string.
-            int index = (int) (rnd.nextFloat() * SALTCHARS.length());
-            salt.append(SALTCHARS.charAt(index));
+            int index = (int) (rnd.nextFloat() * SalTChars.length());
+            salt.append(SalTChars.charAt(index));
         }
-        String saltStr = salt.toString() + "__" + new Date().getTime();
-        return saltStr;
+        return salt.toString() + "__" + new Date().getTime();
 
     }
 

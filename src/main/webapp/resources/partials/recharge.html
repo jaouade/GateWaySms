@@ -11,7 +11,7 @@
                         elementum dictum. Donec convallis mattis elit id varius. Quisque
                         facilisis sapien quis mauris,, erat condimentum.</p>
                     <div class="">
-                        <button ng-click="buy(1000,12)" class="btn btn-space btn-primary">
+                        <button ng-click="buy(1000)" class="btn btn-space btn-primary">
                             <i class="icon icon-left mdi mdi-check"></i> Buy
                         </button>
                     </div>
@@ -30,7 +30,7 @@
                         elementum dictum. Donec convallis mattis elit id varius. Quisque
                         facilisis sapien quis mauris,, erat condimentum.</p>
                     <div class="">
-                        <button ng-click="buy(3000,24)" class="btn btn-space btn-danger">
+                        <button ng-click="buy(3000)" class="btn btn-space btn-danger">
                             <i class="icon icon-left mdi mdi-check"></i> Buy
                         </button>
                     </div>
@@ -49,7 +49,7 @@
                         elementum dictum. Donec convallis mattis elit id varius. Quisque
                         facilisis sapien quis mauris,, erat condimentum.</p>
                     <div class="">
-                        <button ng-click="buy(5000,30)" class="btn btn-space btn-warning">
+                        <button ng-click="buy(5000)" class="btn btn-space btn-warning">
                             <i class="icon icon-left mdi mdi-check"></i> Buy
                         </button>
                     </div>
@@ -58,6 +58,15 @@
             </div>
         </div>
     </div>
+    <hr>
+    <p class="text-success">or choose a number of sms to buy </p>
+    <form name="sms">
+    <div class="form-group">
+        <input  ng-required="true" name="nbSms" type="number" class="form-control" ng-model="nbSms" />
+        <span class="text-danger help-block" ng-show="sms.nbSms.$invalid" >this is required !!</span>
+    </div>
+        <button ng-click="otherPayementMethod()" class="btn btn-success">order</button>
+    </form>
 
 </div>
 

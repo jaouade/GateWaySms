@@ -14,7 +14,26 @@ SmsApp.controller('RechargeController',
         }, function (error) {
             console.log(error)
         });
+        $scope.otherPayementMethod=function () {
+            var req = {
+                method: 'POST',
+                url: "../client/placeOrder",
+                data: {
+                    quantity: $scope.nbSms,
+                    simCard: $scope.account.simCard
+                }
 
+
+            };
+            console.log(req.data);
+            $http(req).then(function (response) {
+                console.log(response.data);
+                $.notify(response.data.success, "success");
+
+            }, function (error) {
+                $.notify(error.data.error, "error");
+            });
+        };
 
         $scope.buy = function (smsCredit) {
             var req = {
@@ -23,7 +42,6 @@ SmsApp.controller('RechargeController',
                 data: {
                     quantity: smsCredit,
                     simCard: $scope.account.simCard
-
                 }
 
 
@@ -31,10 +49,10 @@ SmsApp.controller('RechargeController',
             console.log(req.data);
             $http(req).then(function (response) {
                 console.log(response.data);
-                $.notify("your order has been placed  successfully ", "success");
+                $.notify(response.data.success, "success");
 
             }, function (error) {
-                $.notify("we cannot place you order for the moment ", "error");
+                $.notify(error.data.error, "error");
             });
         }
 

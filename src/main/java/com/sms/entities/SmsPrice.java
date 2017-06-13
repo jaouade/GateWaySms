@@ -1,5 +1,8 @@
 package com.sms.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -9,16 +12,17 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class SmsPrice {
-    @OneToMany(mappedBy = "smsPrice", targetEntity = SmsOrder.class)
-    List<SmsOrder> smsOrders;
+public class SmsPrice implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idSmsPrice;
     private int smsRange;
     private double unitPrice;
     private double tva;
-
+    @OneToMany(mappedBy = "smsPrice", targetEntity = SmsOrder.class)
+    @JsonIgnore
+    private List<SmsOrder> smsOrders;
 
     public SmsPrice() {
         super();

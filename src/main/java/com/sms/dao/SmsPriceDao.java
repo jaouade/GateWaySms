@@ -41,14 +41,9 @@ public class SmsPriceDao extends Dao<SmsPrice> implements ISmsPriceDao {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<SmsPrice> getAll() {
-        Session session = sessionFactory.getCurrentSession();
-        session.beginTransaction();
-        @SuppressWarnings("unchecked")
-        List<SmsPrice> ts = session.createCriteria(SmsPrice.class).list();
-        session.getTransaction().commit();
-        session.close();
-        return ts;
+        return sessionFactory.getCurrentSession().createCriteria(SmsPrice.class).list();
     }
 
 }

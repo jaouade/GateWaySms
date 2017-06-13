@@ -4,10 +4,11 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-public class SmsOrder {
+public class SmsOrder implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idSmsOrder;
@@ -30,10 +31,9 @@ public class SmsOrder {
     private boolean state;
 
     public SmsOrder() {
-
     }
 
-    public SmsOrder(Account account, int smsRange, int quantity, SmsPrice smsPrice, double unitPrice, double tva,
+    public SmsOrder(Account account, int smsRange, int quantity, SmsPrice smsPrice, double tva,
                     double totalTtc, Date orderDate, String status) {
         super();
         this.account = account;
@@ -50,9 +50,9 @@ public class SmsOrder {
         return state;
     }
 
-    public SmsOrder setState(boolean state) {
+    public void setState(boolean state) {
         this.state = state;
-        return this;
+
     }
 
     public SmsPrice getSmsPrice() {

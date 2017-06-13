@@ -27,6 +27,7 @@ public class SmsOrderDao extends Dao<SmsOrder> implements ISmsOrderDao {
     public SmsOrder save(SmsOrder object) {
         sessionFactory.getCurrentSession().save(object);
         return object;
+
     }
 
     @Override

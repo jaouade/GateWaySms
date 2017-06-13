@@ -35,7 +35,7 @@ public class SmsOrderTest {
         Credential credential = new Credential("login1", "password2",  "Role_User");
         Account a = new Account(client, credential, 333, 2222);
         SmsPrice smsPrice = new SmsPrice(3333, 3.3, 14.0);
-        SmsOrder smso = soDap.save(new SmsOrder(a, 4567, 4567, smsPrice, 1.2, 222, 22141, new Date(), "status"));
+        SmsOrder smso = soDap.save(new SmsOrder(a, 4567, 4567, smsPrice, 1.2, 222, new Date(), "status"));
         Assert.assertNotNull(smso);
 
     }
@@ -47,7 +47,7 @@ public class SmsOrderTest {
         Credential credential = new Credential("login1", "password2",  "Role_User");
         Account a = new Account(client, credential, 333, 2222);
         SmsPrice smsPrice = new SmsPrice(3333, 3.3, 14.0);
-        SmsOrder smso = soDap.save(new SmsOrder(a, 4567, 4567, smsPrice, 1.2, 222, 22141, new Date(), "status"));
+        SmsOrder smso = soDap.save(new SmsOrder(a, 4567, 4567, smsPrice, 1.2, 222, new Date(), "status"));
         smso.setQuantity(22222222);
         soDap.update(smso);
         SmsOrder order = soDap.get(smso.getIdSmsOrder());
@@ -62,7 +62,7 @@ public class SmsOrderTest {
         Credential credential = new Credential("login1", "password2", "Role_User");
         Account a = new Account(client, credential, 333, 2222);
         SmsPrice smsPrice = new SmsPrice(3333, 3.3, 14.0);
-        SmsOrder smso = soDap.save(new SmsOrder(a, 4567, 4567, smsPrice, 1.2, 222, 22141, new Date(), "status"));
+        SmsOrder smso = soDap.save(new SmsOrder(a, 4567, 4567, smsPrice, 1.2, 222,  new Date(), "status"));
         soDap.delete(smso);
         smso = soDap.get(smso.getIdSmsOrder());
         Assert.assertNull(smso);

@@ -1,13 +1,13 @@
 SmsApp.controller('RechargeController',
-    function ($scope, $http, $cookies, $location, $timeout, PhoneBook) {
-        $scope.recharge = "recharge"
+    function ($scope, $http) {
+        $scope.recharge = "recharge";
         $scope.account = false;
         var req = {
             method: 'POST',
-            url: "../account/user",
+            url: "../account/user"
 
 
-        }
+        };
 
         $http(req).then(function (response) {
             $scope.account = response.data
@@ -16,21 +16,21 @@ SmsApp.controller('RechargeController',
         });
 
 
-        $scope.buy = function (smsCredit, mentant) {
+        $scope.buy = function (smsCredit) {
             var req = {
                 method: 'POST',
-                url: "../client/addsc",
+                url: "../client/placeOrder",
                 data: {
-                    mentantRecharge: mentant,
-                    simCard: $scope.account.simCard,
-                    equivalentSms: smsCredit
+                    quantity: smsCredit,
+                    simCard: $scope.account.simCard
+
                 }
 
 
-            }
+            };
             console.log(req.data);
             $http(req).then(function (response) {
-                console.log(response.data)
+                console.log(response.data);
                 $.notify("your order has been placed  successfully ", "success");
 
             }, function (error) {
@@ -39,9 +39,9 @@ SmsApp.controller('RechargeController',
         }
 
 
-    }).factory('PhoneBook', function ($http, $q) {
-    var factory = {};
+    }).factory('PhoneBook', function () {
 
-    return factory;
-})
+
+    return  {};
+});
 		

@@ -32,6 +32,18 @@ public class SimCard {
     @JsonIgnore
     private List<RechargeSim> recharges;
 
+    public List<SmsOrder> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<SmsOrder> orders) {
+        this.orders = orders;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "simCard")
+    @Cascade(CascadeType.SAVE_UPDATE)
+    @JsonIgnore
+    private List<SmsOrder> orders;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "simCard")
     @Cascade(CascadeType.SAVE_UPDATE)
     @JsonIgnore

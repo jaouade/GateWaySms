@@ -163,7 +163,7 @@ public class RestClient {
 
     }
 
-    @RequestMapping(value = "addsc", method = RequestMethod.POST)
+    @RequestMapping(value = "placeOrder", method = RequestMethod.POST)
     public ResponseEntity<?> addsc(@RequestBody RechargeSim rechsim, HttpSession session) {
         rechsim.setDateRecharge(new Date());
         rechsim.setEtat(0);

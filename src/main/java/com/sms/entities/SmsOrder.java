@@ -1,17 +1,10 @@
 package com.sms.entities;
 
-import java.util.Date;
-
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
+
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class SmsOrder {
@@ -27,10 +20,15 @@ public class SmsOrder {
     @ManyToOne(fetch = FetchType.LAZY)
     @Cascade(CascadeType.SAVE_UPDATE)
     private SmsPrice smsPrice;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @Cascade(CascadeType.SAVE_UPDATE)
+    private SimCard simCard;
     private double tva;
     private double totalTtc;
     private Date orderDate;
     private String status;
+    private boolean state;
+
     public SmsOrder() {
 
     }
@@ -46,6 +44,15 @@ public class SmsOrder {
         this.totalTtc = totalTtc;
         this.orderDate = orderDate;
         this.status = status;
+    }
+
+    public boolean isState() {
+        return state;
+    }
+
+    public SmsOrder setState(boolean state) {
+        this.state = state;
+        return this;
     }
 
     public SmsPrice getSmsPrice() {
@@ -118,6 +125,14 @@ public class SmsOrder {
 
     public void setTva(double tva) {
         this.tva = tva;
+    }
+
+    public SimCard getSimCard() {
+        return simCard;
+    }
+
+    public void setSimCard(SimCard simCard) {
+        this.simCard = simCard;
     }
 
     @Override

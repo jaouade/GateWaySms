@@ -105,19 +105,23 @@
                                 </ul>
                             </li>
                             <li class="parent"><a href="#"><i
-                                    class="icon mdi mdi-dot-circle"></i><span>LOG</span></a>
+                                    class="icon mdi mdi-dot-circle"></i><span>Historique</span></a>
                                 <ul class="sub-menu">
-                                    <li><a href="/admin/log"> <i class="icon mdi mdi-accounts-list"></i> Historique</a>
+                                    <li><a href="/admin/log/users"> <i class="icon mdi mdi-accounts-list"></i> USERS</a>
+                                    </li>
+                                    <li><a href="/admin/log/sms"> <i class="icon mdi mdi-accounts-list"></i> SMS</a>
+                                    </li>
+                                    <li><a href="/admin/log/sim"> <i class="icon mdi mdi-accounts-list"></i> SIM
+                                        CARD</a>
                                     </li>
 
                                 </ul>
                             </li>
                             <li class=""><a href="/admin/account"><i
                                     class="icon mdi mdi-view-headline"></i><span>ACCOUNTS</span></a>
-
                             </li>
-
-
+                            <li class=""><a href="/admin/smsprice"><i
+                                    class="icon mdi mdi-view-headline"></i><span>SMS PRICES</span></a>
                             </li>
                         </ul>
                     </div>
@@ -145,41 +149,43 @@
                         <div class="panel-body">
                             <div class="table-responsive noSwipe">
                                 <c:if test="${!empty cities}">
-                                <table id="table" class="table table-striped table-hover">
-                                    <thead>
-                                    <tr>
+                                    <table id="table" class="table table-striped table-hover">
+                                        <thead>
+                                        <tr>
 
 
-                                        <th style="width:20%;">name</th>
-                                        <th style="width:50%;">template</th>
-                                        <th style="width:30%;"></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <c:forEach items="${cities}" var="city">
-                                    <tr  id="<c:out value="${city.idCity}"/>">
+                                            <th style="width:20%;">name</th>
+                                            <th style="width:50%;">template</th>
+                                            <th style="width:30%;"></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <c:forEach items="${cities}" var="city">
+                                            <tr id="<c:out value="${city.idCity}"/>">
 
-                                        <td class="cell-detail"><span><c:out value="${city.cityName}"/></span></td>
-                                        <td><span></span></td>
-                                        <td class="text-right">
-                                            <div class="btn-group btn-space">
-                                                <button  type="button"
-                                                        class="btn btn-danger"><i class="icon mdi mdi-delete"></i>
-                                                </button>
-                                                <button type="button" class="btn btn-warning"
+                                                <td class="cell-detail"><span><c:out value="${city.cityName}"/></span>
+                                                </td>
+                                                <td><span></span></td>
+                                                <td class="text-right">
+                                                    <div class="btn-group btn-space">
+                                                        <button type="button"
+                                                                class="btn btn-danger"><i
+                                                                class="icon mdi mdi-delete"></i>
+                                                        </button>
+                                                        <button type="button" class="btn btn-warning"
                                                         ><i
-                                                        class="icon mdi mdi-edit"></i></button>
-                                                <button type="button" class="btn btn-primary" >
-                                                    <i
-                                                            class="icon mdi mdi-eye"></i></button>
-                                            </div>
+                                                                class="icon mdi mdi-edit"></i></button>
+                                                        <button type="button" class="btn btn-primary">
+                                                            <i
+                                                                    class="icon mdi mdi-eye"></i></button>
+                                                    </div>
 
-                                        </td>
-                                    </tr>
-                                    </c:forEach>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
 
-                                    </tbody>
-                                </table>
+                                        </tbody>
+                                    </table>
                                 </c:if>
                             </div>
                         </div>
@@ -308,7 +314,6 @@
         //initialize the javascript
         App.init();
         App.dashboard();
-
     });
 </script>
 

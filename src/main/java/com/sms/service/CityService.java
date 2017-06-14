@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 @org.springframework.stereotype.Service
 public class CityService extends Service<City> implements IcityService {
-    private CityDao cityDao;
+    private CityDao citydao;
     public CityService(){
 
     }
@@ -16,6 +16,6 @@ public class CityService extends Service<City> implements IcityService {
     public CityService(
             @Qualifier("cityDao") IDao<City> genericDao) {
         super(genericDao);
-        this.cityDao = (CityDao) genericDao;
+        this.citydao = (CityDao) genericDao;
     }
 }

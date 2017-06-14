@@ -47,7 +47,7 @@ public class RestSMS {
             sms.setAccount(account);
 
             sms.setSimCard(card);
-            sms.setSendDate(new Date(sms.getDate()));
+            sms.setSendDate(new Date(0));
             smsdao.save(sms);
 
             return new ResponseEntity<>(new JsonService.Success("you message has been saved successfully",sms), ACCEPTED);

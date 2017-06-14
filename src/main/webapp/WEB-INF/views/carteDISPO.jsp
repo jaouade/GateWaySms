@@ -176,15 +176,15 @@
                                                 </td>
 
 
-                                                <td class="text-right">
-                                                    <div class="btn-group btn-space">
-                                                        <a href="/admin/supSim/${sim.idSimCard}" type="button"
-                                                           class="btn btn-danger"><i class="icon mdi mdi-delete"></i>
-                                                        </a>
+                                                    <%--<td class="text-right">
+                                                        <div class="btn-group btn-space">
+                                                            <a href="/admin/supSim/${sim.idSimCard}" type="button"
+                                                               class="btn btn-danger"><i class="icon mdi mdi-delete"></i>
+                                                            </a>
 
-                                                    </div>
+                                                        </div>
 
-                                                </td>
+                                                    </td>--%>
                                             </tr>
                                         </c:forEach>
 
@@ -197,7 +197,7 @@
                 </div>
             </div>
             <hr>
-            <form:form action="/admin/ajoutSim" modelAttribute="card" method="post">
+            <%--<form:form action="/admin/ajoutSim" modelAttribute="card" method="post">
                 <div class="form-group">
                     <label for="recipient-name" class="control-label">Operateur</label>
                     <form:input type="text" path="operator" class="form-control"
@@ -210,6 +210,7 @@
 
                 <input class="btn btn-space btn-primary" type="submit" value="Submit"/>
             </form:form>
+            --%>
             <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">

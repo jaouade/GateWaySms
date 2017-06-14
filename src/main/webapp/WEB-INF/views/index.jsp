@@ -181,10 +181,8 @@
     <div class="be-content">
         <div class="main-content container-fluid" ng-controller="HomeController">
 
-
             <div ng-view>
             </div>
-
 
         </div>
     </div>

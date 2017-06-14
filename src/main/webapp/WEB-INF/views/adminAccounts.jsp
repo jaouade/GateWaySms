@@ -142,40 +142,47 @@
                 <!--Responsive table-->
                 <div class="col-sm-12">
                     <div class="panel panel-default panel-table">
-                        <div class="panel-heading"> Affectation des cartes SIM
+                        <div class="panel-heading"> Activation des comptes
                             <div class="tools"><span class="icon mdi mdi-download"></span><span
                                     class="icon mdi mdi-more-vert"></span></div>
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive noSwipe">
-                                <c:if test="${!empty AlldemandesSIM}">
+                                <c:if test="${!empty accounts}">
                                     <table id="table" class="table table-striped table-hover">
                                         <thead>
                                         <tr>
 
 
-                                            <th style="">DATE</th>
-                                            <th style="">COMPTE</th>
-                                            <th style="">NUMERO DEMANDÉ</th>
+                                            <th style="">NAME</th>
+                                            <th style="">EMAIL</th>
+                                            <th style="">PHONE</th>
+                                            <th style="">CITY</th>
+
 
                                             <th style="width:30%;"></th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <c:forEach items="${AlldemandesSIM}" var="sim">
-                                            <tr id="<c:out value="${sim.id}"/>">
+                                        <c:forEach items="${accounts}" var="account">
+                                            <tr id="<c:out value="${account.idAccount}"/>">
 
-                                                <td class="cell-detail"><span><c:out value="${sim.date}"/></span>
+                                                <td class="cell-detail"><span><c:out
+                                                        value="${account.client.corp_name}"/></span>
                                                 </td>
                                                 <td class="cell-detail"><span><c:out
-                                                        value="${sim.account.client.corp_name}"/></span>
+                                                        value="${account.client.email}"/></span>
                                                 </td>
-                                                <td class="cell-detail"><span><c:out value="${sim.number}"/></span>
+                                                <td class="cell-detail"><span><c:out
+                                                        value="${account.client.phone}"/></span>
+                                                </td>
+                                                <td class="cell-detail"><span><c:out
+                                                        value="${account.client.city.cityName}"/></span>
                                                 </td>
 
                                                 <td class="text-right">
                                                     <div class="btn-group btn-space">
-                                                        <a href="/admin/verifSIM/${sim.id}" type="button"
+                                                        <a href="/admin/activer/${account.idAccount}" type="button"
                                                            class="btn btn-danger"><i class="icon mdi mdi-eye"></i>
                                                         </a>
 

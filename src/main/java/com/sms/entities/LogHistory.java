@@ -16,7 +16,7 @@ public class LogHistory {
     @ManyToOne(fetch = FetchType.EAGER)
     @Cascade(CascadeType.SAVE_UPDATE)
     private Account loggedUser;
-
+    private String category;
 
     public LogHistory() {
         super();
@@ -27,6 +27,14 @@ public class LogHistory {
         this.operation = operation;
         this.date = date;
         this.loggedUser = loggedUser;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public long getIdLog() {

@@ -1,5 +1,6 @@
 SmsApp
     .directive("limitTo", [function () {
+        // skip
         return {
             restrict: "A",
             link: function (scope, elem, attrs) {
@@ -52,7 +53,7 @@ SmsApp
             $scope.setTemplate = function () {
                 var template = JSON.parse($scope.template);
                 $scope.message = template.smsTemplate;
-                console.log($scope.message)
+
 
             };
             $scope.showRest = function () {
@@ -86,7 +87,7 @@ SmsApp
                     }
 
                 }
-                console.log($scope.contacts);
+
                 $("#"+id).show();
             };
             $http(req).then(function (response) {
@@ -129,7 +130,6 @@ SmsApp
 
                         data = {
                             nbMessages: $scope.nbMsg,
-                            date: new Date($scope.date3).getTime(),
                             message: $scope.message,
                             receivers: $scope.contacts.push($scope.phoneFromInput),
                             simCard: {
@@ -139,7 +139,6 @@ SmsApp
                     } else {
                         data = {
                             nbMessages: $scope.nbMsg,
-                            date: new Date($scope.date3).getTime(),
                             message: $scope.message,
                             receivers: $scope.contacts,
                             simCard: {
@@ -154,13 +153,13 @@ SmsApp
                         data: data
 
                     };
-                    console.log(data);
-                    $http(req).then(function (response) {
-                        $rootScope.account =response.data.object.account;
-                        console.log(response.data);
-                        $.notify(response.data.success, "success");
 
-                    }, function (error) {
+                        $http(req).then(function (response) {
+                            $rootScope.account = response.data.object.account;
+                            console.log(response.data);
+                            $.notify(response.data.success, "success");
+
+                        }, function (error) {
                         $.notify(error.data.error, "error");
                     });
                     }

@@ -2,8 +2,6 @@ package com.sms.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 
 import javax.persistence.*;
 import java.util.List;
@@ -14,32 +12,41 @@ public class PhoneNumber {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idPhone;
     private String clientName;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @Cascade(CascadeType.SAVE_UPDATE)
-    private Compagne compagne;
+    @ManyToMany(mappedBy = "numbers")
+    private List<Compagne> compagnes;
     private String PhoneNumber;
     @ManyToOne(fetch = FetchType.EAGER)
     private PhoneBook phoneBook;
     @ManyToMany(mappedBy = "receivers")
     private List<Sms> smsList;
-    @JsonIgnore
-    public List<Sms> getSms() {
-        return smsList;
-    }
-    @JsonProperty
-    public void setSms(List<Sms> smsList) {
-        this.smsList = smsList;
-    }
-
     public PhoneNumber() {
 
     }
-
     public PhoneNumber(String clientName, String phoneNumber, PhoneBook phoneBook) {
         super();
         this.clientName = clientName;
         PhoneNumber = phoneNumber;
         this.phoneBook = phoneBook;
+    }
+
+    @JsonIgnore
+    public List<Compagne> getCompagnes() {
+        return compagnes;
+    }
+
+    @JsonProperty
+    public void setCompagnes(List<Compagne> compagnes) {
+        this.compagnes = compagnes;
+    }
+
+    @JsonIgnore
+    public List<Sms> getSms() {
+        return smsList;
+    }
+
+    @JsonProperty
+    public void setSms(List<Sms> smsList) {
+        this.smsList = smsList;
     }
 
     public long getIdPhone() {

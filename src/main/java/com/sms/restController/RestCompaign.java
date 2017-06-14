@@ -1,7 +1,9 @@
 package com.sms.restController;
 
-import com.sms.entities.*;
-import com.sms.service.*;
+import com.sms.entities.Account;
+import com.sms.entities.Compagne;
+import com.sms.service.ICompagneService;
+import com.sms.service.JsonService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,44 +15,29 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
 import java.util.Date;
-import java.util.List;
-import java.util.Random;
 
 @RestController
-@RequestMapping("compaign")
+@RequestMapping("campaign")
 public class RestCompaign {
     private Logger log = Logger.getLogger(RestCompaign.class);
 
     @Autowired
-    private IAccountService accountDao;
-    @Autowired
-    private ITokenService tokenDao;
-    @Autowired
-    private IcityService cityDao;
-    @Autowired
-    private ISectorService secDao;
-    @Autowired
-    private IRechargeSimService rechdao;
+    private ICompagneService iCompagneService;
 
-
-    @Autowired
-    private MailService mailS;
-
-    @RequestMapping(value = "add", method = RequestMethod.POST)
-    public ResponseEntity<?> signin(@RequestBody Compagne compagne) {
-        for (int i = 0; i < compagne.getNumbers().size(); i++) {
-            Sms sms = new Sms();
-            sms.setReceivers(compagne.getNumbers());
-        }
-
-        return new ResponseEntity<>("internal error", HttpStatus.NOT_FOUND);
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public ResponseEntity<?> add(@RequestBody Compagne compagne, HttpSession session) {
+        compagne.setSendDate(new Date(compagne.getDate()));
+        compagne.setAccount((Account) session.getAttribute("account"));
+        log.info(compagne);
+        iCompagneService.save(compagne);
+        return new ResponseEntity<>(new JsonService.Success("you campaign has been save successfully", compagne), HttpStatus.ACCEPTED);
 
         //return new ResponseEntity<>(account, HttpStatus.ACCEPTED);
 
 
     }
 
-    @RequestMapping(value = "sub-account", method = RequestMethod.POST)
+    /*@RequestMapping(value = "sub-account", method = RequestMethod.POST)
     public ResponseEntity<?> subAccount(@RequestBody Token token) {
         token.setToken(getSaltString());
         if (tokenDao.save(token) == null) {
@@ -118,6 +105,6 @@ public class RestCompaign {
         String saltStr = salt.toString() + "__" + new Date().getTime();
         return saltStr;
 
-    }
+    }*/
 
 }

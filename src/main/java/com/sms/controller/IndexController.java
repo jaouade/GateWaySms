@@ -1,9 +1,9 @@
 package com.sms.controller;
 
-import com.sms.dao.IAccountDao;
-import com.sms.dao.ITokenDao;
 import com.sms.entities.*;
+import com.sms.service.IAccountService;
 import com.sms.service.ISectorService;
+import com.sms.service.ITokenService;
 import com.sms.service.IcityService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,11 +31,12 @@ public class IndexController {
     @Autowired
     private IcityService cityDao;
     @Autowired
-    private ITokenDao tokenDao;
+    private ITokenService tokenDao;
     @Autowired
     private ISectorService secDao;
+
     @Autowired
-    private IAccountDao acDao;
+    private IAccountService acDao;
 
     @ModelAttribute("account")
     public Account account() {
@@ -111,7 +112,7 @@ public class IndexController {
     public String postSignup(@ModelAttribute("account") Account account, BindingResult bindingResult, Model model) {
         City city = cityDao.get(account.getClient().getCity().getIdCity());
         Sector sector = secDao.get(account.getClient().getSector().getIdSector());
-        com.sms.entities.Client client = account.getClient();
+        Client client = account.getClient();
         client.setCity(city);
         client.setSector(sector);
         Credential credential = account.getCredential();

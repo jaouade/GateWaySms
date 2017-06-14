@@ -1,11 +1,12 @@
 package com.sms.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-public class Compagne {
+public class Compagne implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idCompagne;
@@ -13,10 +14,11 @@ public class Compagne {
     @ManyToOne(fetch = FetchType.EAGER)
     private Account account;
     private Date sendDate;
-    @OneToOne(fetch = FetchType.EAGER)
-    private Sms message;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "compagne")
+    private String message;
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<PhoneNumber> numbers;
+    private long date;
+
     public Compagne() {
 
     }
@@ -27,11 +29,19 @@ public class Compagne {
         this.account = account;
     }
 
-    public Sms getMessage() {
+    public long getDate() {
+        return date;
+    }
+
+    public void setDate(long date) {
+        this.date = date;
+    }
+
+    public String getMessage() {
         return message;
     }
 
-    public void setMessage(Sms message) {
+    public void setMessage(String message) {
         this.message = message;
     }
 

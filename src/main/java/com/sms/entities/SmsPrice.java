@@ -15,21 +15,28 @@ public class SmsPrice implements Serializable {
     private int smsRange;
     private double unitPrice;
     private double tva;
+    private String deleted;
     @OneToMany(mappedBy = "smsPrice", targetEntity = SmsOrder.class)
     @JsonIgnore
     private List<SmsOrder> smsOrders;
-
     public SmsPrice() {
         super();
         // TODO Auto-generated constructor stub
     }
-
 
     public SmsPrice(int smsRange, double unitPrice, double tva) {
 
         this.smsRange = smsRange;
         this.unitPrice = unitPrice;
         this.tva = tva;
+    }
+
+    public String getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(String deleted) {
+        this.deleted = deleted;
     }
 
     public List<SmsOrder> getSmsOrders() {

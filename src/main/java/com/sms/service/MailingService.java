@@ -25,7 +25,7 @@ public class MailingService implements MailService {
 
                 mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
                 mimeMessage.setFrom(new InternetAddress("jaouadelaoud@gmail.com"));
-                mimeMessage.setText("hello ,\n" + message);
+                mimeMessage.setText("hello ,\n use this link to activate your account \n" + message);
 
             }
         };
@@ -33,7 +33,6 @@ public class MailingService implements MailService {
         try {
             this.mailSender.send(preparator);
         } catch (MailException ex) {
-            // simply log it and go on...
             System.err.println(ex.getMessage());
         }
 

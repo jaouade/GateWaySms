@@ -25,27 +25,12 @@ public class Account {
     private int smsCredit;
     private int threshold;
 
-    public Boolean getState() {
-        return state;
-    }
-
-    public void setState(Boolean state) {
-        this.state = state;
-    }
-
+    @ManyToMany(mappedBy = "accounts")
+    private List<Pack> packs;
     private Boolean state;
     @OneToMany(fetch = LAZY, mappedBy = "account")
     @JsonIgnore
     private List<PhoneBook> phoneBooks;
-
-    public List<Sms> getSmsList() {
-        return smsList;
-    }
-
-    public void setSmsList(List<Sms> smsList) {
-        this.smsList = smsList;
-    }
-
     @OneToMany(fetch = LAZY, mappedBy = "account")
     @JsonIgnore
     private List<Sms> smsList;
@@ -55,15 +40,33 @@ public class Account {
     @OneToMany(fetch = LAZY, mappedBy = "loggedUser")
     @JsonIgnore
     private List<LogHistory> logHistories;
+
     public Account() {
 
     }
+
     public Account(Client client, Credential credential, int smsCredit, int threshold) {
 
         this.client = client;
         this.credential = credential;
         this.smsCredit = smsCredit;
         this.threshold = threshold;
+    }
+
+    public Boolean getState() {
+        return state;
+    }
+
+    public void setState(Boolean state) {
+        this.state = state;
+    }
+
+    public List<Sms> getSmsList() {
+        return smsList;
+    }
+
+    public void setSmsList(List<Sms> smsList) {
+        this.smsList = smsList;
     }
 
     public SimCard getSimCard() {

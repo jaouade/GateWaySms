@@ -4,35 +4,17 @@
     <div class="panel panel-default panel-border-color panel-border-color-success">
         <div class="panel-heading"></div>
         <div class="panel-body">
-            <form>
+            <form name="campaign">
                 <div class="form-group">
-                    <label for="sel1">choisir un source:</label> <select
-                        ng-model="idSimCard" class="form-control" id="sel1">
+                    <label for="sel1">Campaign Designation:</label>
+
+                    <input class="form-control" type="text" ng-model="comp.compagneDesignation">
 
 
-                    <option ng-repeat="simcard in simCards "
-                            value="{{simcard.idSimCard}}">{{simcard.simNumber}}
-                    </option>
-
-
-                </select>
                 </div>
 
-
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="sel1">choisir les contacts :</label> <select
-                                ng-change="update()" multiple="multiple" ng-model="selected"
-                                class="form-control" id="sel1">
 
-                            <option ng-repeat="phone in phones " value="{{phone.idPhone}}">{{phone.phoneNumber}}
-                                :[{{phone.clientName}}]
-                            </option>
-
-                        </select>
-                        </div>
-                    </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="sel1">choisir une template :</label> <select
@@ -53,6 +35,25 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="sel1">choisir une destination :</label>
+                    <select name="phones" ng-required="true" ng-model="idPhone" multiple="multiple" class="form-control"
+                            id="sel">
+
+
+                        <option ng-click="changeItsPLace(phone)" ng-repeat="phone in phones " id="{{phone.idPhone}}"
+                                value="{{phone.idPhone}}">{{phone.clientName}}:>{{phone.phoneNumber}}
+                        </option>
+
+                    </select></div>
+                <div class="form-group">
+                    <label for="selectedPhones">selected contacts</label>
+                    <select ng-model="idPhone" multiple="multiple" class="form-control" id="selectedPhones">
+
+                    </select>
+                </div>
+                <span class="text-danger help-block" ng-show="campaign.phones.$invalid">this is required !!</span>
+
+                <div class="form-group">
 
                     <div class="be-checkbox">
                         <button class="btn btn-success" ng-click="normal()">normal</button>
@@ -60,14 +61,14 @@
                     </div>
                     <label for="recipient-name" class="control-label">error</label>
                     <textarea id="error" ng-keypress="showRest()"
-                              limit-to="{{limit}}" type="text" ng-model="error"
-                              class="form-control" id="recipient-name" placeholder="error"></textarea>
+                              limit-to="{{limit}}" type="text" ng-model="comp.message"
+                              class="form-control" id="recipient-name" placeholder="message"></textarea>
                     <p class="text-danger helper">you still can type {{rest}}
                         character.</p>
                     <p class="text-danger helper">( {{nbMsg}} ) Messages.</p>
                 </div>
                 <div class="form-group">
-                    <input class="form-control" ng-model="date3" datetime-picker
+                    <input class="form-control" ng-model="comp.date" datetime-picker
                            date-format="yyyy-MM-dd HH:mm:ss"/>
                 </div>
 

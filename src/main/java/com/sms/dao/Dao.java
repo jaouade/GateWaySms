@@ -5,12 +5,10 @@ import org.hibernate.SessionFactory;
 import org.jetbrains.annotations.Contract;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
-@Transactional
 @Repository
 @SuppressWarnings("unchecked")
 public abstract class Dao<T> implements IDao<T> {
@@ -19,15 +17,17 @@ public abstract class Dao<T> implements IDao<T> {
     @Autowired
     private SessionFactory sessionFactory;
 
-    protected   Session  currentSession() {
-        return sessionFactory.getCurrentSession();
-    }
     public Dao() {
         Type t = getClass().getGenericSuperclass();
         ParameterizedType pt = (ParameterizedType) t;
 
         clazz = (Class) pt.getActualTypeArguments()[0];
     }
+
+    protected Session currentSession() {
+        return sessionFactory.getCurrentSession();
+    }
+
     @SuppressWarnings("unchecked")
     @Override
     public T get(Long id) {

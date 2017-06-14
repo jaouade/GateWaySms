@@ -6,7 +6,7 @@ import com.sms.entities.LogHistory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 @org.springframework.stereotype.Service
-public class LogHistoryService extends Service<LogHistory> implements  Iservice<LogHistory> {
+public class LogHistoryService extends Service<LogHistory> implements ILogHistoryService {
     private LogHistoryDao logHistoryDao;
     public LogHistoryService(){
 

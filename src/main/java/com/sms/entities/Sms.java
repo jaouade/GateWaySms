@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import static javax.persistence.FetchType.LAZY;
 import static org.hibernate.annotations.CascadeType.SAVE_UPDATE;
 
 @Entity
-public class Sms {
+public class Sms implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idSms;

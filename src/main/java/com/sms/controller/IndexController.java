@@ -1,17 +1,12 @@
 package com.sms.controller;
 
-import java.security.Principal;
-import java.util.Objects;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
+import com.sms.dao.IAccountDao;
 import com.sms.dao.ITokenDao;
 import com.sms.entities.*;
+import com.sms.service.ISectorService;
+import com.sms.service.IcityService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -24,23 +19,22 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.sms.dao.IAccountDao;
-import com.sms.dao.ICityDao;
-import com.sms.dao.ISectorDao;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.security.Principal;
+import java.util.Objects;
 
 @Controller
 public class IndexController {
     Logger logger = Logger.getLogger(IndexController.class);
     @Autowired
-    @Qualifier("citydao")
-    private ICityDao cityDao;
+    private IcityService cityDao;
     @Autowired
-    @Qualifier("tokendao")
     private ITokenDao tokenDao;
-    @Qualifier("sectordao")
-    private ISectorDao secDao;
     @Autowired
-    @Qualifier("accountdao")
+    private ISectorService secDao;
+    @Autowired
     private IAccountDao acDao;
 
     @ModelAttribute("account")

@@ -1,10 +1,8 @@
 package com.sms.controller;
 
-import com.sms.dao.ISimCardDao;
-import com.sms.entities.Account;
 import com.sms.entities.SimCard;
+import com.sms.service.ISimCardService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,16 +12,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
-import java.util.List;
-import java.util.ListIterator;
 import java.util.Map;
 
 @Controller
 @RequestMapping("admin")
 public class AdminController {
     @Autowired
-    @Qualifier("simcarddao")
-    private ISimCardDao iSimCardDao;
+    private ISimCardService iSimCardDao;
 
     @ModelAttribute("card")
     public SimCard card() {

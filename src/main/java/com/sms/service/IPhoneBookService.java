@@ -1,5 +1,10 @@
 package com.sms.service;
 
-public interface IPhoneBookService {
+import com.sms.entities.Account;
+import com.sms.entities.PhoneBook;
 
+import java.util.List;
+
+public interface IPhoneBookService  extends  Iservice<PhoneBook>{
+    List<PhoneBook> getAllByAccount(Account acc);
 }

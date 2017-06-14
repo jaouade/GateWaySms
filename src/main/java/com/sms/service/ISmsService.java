@@ -1,5 +1,7 @@
 package com.sms.service;
 
-public interface ISmsService {
+import com.sms.entities.Sms;
+
+public interface ISmsService extends Iservice<Sms> {
 
 }

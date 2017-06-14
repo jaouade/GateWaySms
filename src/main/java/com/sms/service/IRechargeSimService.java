@@ -1,5 +1,7 @@
 package com.sms.service;
 
-public interface IRechargeSimService {
+import com.sms.entities.RechargeSim;
+
+public interface IRechargeSimService extends Iservice<RechargeSim> {
 
 }

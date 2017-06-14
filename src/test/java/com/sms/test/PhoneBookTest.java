@@ -1,5 +1,9 @@
 package com.sms.test;
 
+import com.sms.config.HibernateConfiguration;
+import com.sms.dao.IAccountDao;
+import com.sms.dao.IPhoneBookDao;
+import com.sms.entities.*;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,17 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import com.sms.config.HibernateConfiguration;
-import com.sms.dao.IAccountDao;
-import com.sms.dao.IPhoneBookDao;
-import com.sms.entities.PhoneBook;
-import com.sms.entities.Sector;
-import com.sms.entities.Account;
-import com.sms.entities.City;
-import com.sms.entities.Client;
-import com.sms.entities.Country;
-import com.sms.entities.Credential;
 
 @ContextConfiguration(classes = {HibernateConfiguration.class})
 @RunWith(SpringJUnit4ClassRunner.class)

@@ -1,5 +1,7 @@
 package com.sms.service;
 
-public interface ISimCardService {
+import com.sms.entities.SimCard;
+
+public interface ISimCardService  extends Iservice<SimCard>{
 
 }

@@ -1,5 +1,10 @@
 package com.sms.test;
 
+import com.sms.config.HibernateConfiguration;
+import com.sms.dao.IAdminDao;
+import com.sms.entities.Admin;
+import com.sms.entities.Credential;
+import com.sms.service.IAdminService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -8,17 +13,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.sms.config.HibernateConfiguration;
-import com.sms.dao.IAdminDao;
-import com.sms.entities.Admin;
-import com.sms.entities.Credential;
-
 @ContextConfiguration(classes = {HibernateConfiguration.class})
 @RunWith(SpringJUnit4ClassRunner.class)
 public class AdminTest {
     @Autowired
-    @Qualifier("admindao")
-    private IAdminDao adminDao;
+
+    private IAdminService adminDao;
 
 
     @Test

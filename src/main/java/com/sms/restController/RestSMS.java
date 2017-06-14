@@ -1,14 +1,11 @@
 package com.sms.restController;
 
-import com.sms.dao.*;
 import com.sms.entities.Account;
-import com.sms.entities.Client;
 import com.sms.entities.SimCard;
 import com.sms.entities.Sms;
-import com.sms.service.JsonService;
+import com.sms.service.*;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,20 +26,15 @@ public class RestSMS {
     private Logger log = Logger.getLogger(RestSMS.class);
 
     @Autowired
-    @Qualifier("smsdao")
-    private ISmsDao smsdao;
+    private ISmsService smsdao;
     @Autowired
-    @Qualifier("clientdao")
-    private IClientDao cldao;
+    private IClientService cldao;
     @Autowired
-    @Qualifier("accountdao")
-    private IAccountDao iAccountDao;
+    private IAccountService iAccountDao;
     @Autowired
-    @Qualifier("phonenumberdao")
-    private IPhoneNumberDao pndao;
+    private IPhoneNumberService pndao;
     @Autowired
-    @Qualifier("simcarddao")
-    private ISimCardDao simcarddao;
+    private ISimCardService simcarddao;
 
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public ResponseEntity<?> create(@RequestBody Sms sms, HttpSession session) {

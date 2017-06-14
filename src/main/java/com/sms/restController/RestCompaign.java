@@ -1,14 +1,9 @@
 package com.sms.restController;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
-
-import javax.servlet.http.HttpSession;
-
+import com.sms.entities.*;
+import com.sms.service.*;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,20 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sms.dao.IAccountDao;
-import com.sms.dao.ICityDao;
-import com.sms.dao.IRechargeSimDao;
-import com.sms.dao.ISectorDao;
-import com.sms.dao.ITokenDao;
-import com.sms.entities.Account;
-import com.sms.entities.City;
-import com.sms.entities.Compagne;
-import com.sms.entities.Credential;
-import com.sms.entities.RechargeSim;
-import com.sms.entities.Sector;
-import com.sms.entities.Sms;
-import com.sms.entities.Token;
-import com.sms.service.MailService;
+import javax.servlet.http.HttpSession;
+import java.util.Date;
+import java.util.List;
+import java.util.Random;
 
 @RestController
 @RequestMapping("compaign")
@@ -37,20 +22,15 @@ public class RestCompaign {
     private Logger log = Logger.getLogger(RestCompaign.class);
 
     @Autowired
-    @Qualifier("accountdao")
-    private IAccountDao accountDao;
+    private IAccountService accountDao;
     @Autowired
-    @Qualifier("tokendao")
-    private ITokenDao tokenDao;
+    private ITokenService tokenDao;
     @Autowired
-    @Qualifier("citydao")
-    private ICityDao cityDao;
+    private IcityService cityDao;
     @Autowired
-    @Qualifier("sectordao")
-    private ISectorDao secDao;
+    private ISectorService secDao;
     @Autowired
-    @Qualifier("rechargesimdao")
-    private IRechargeSimDao rechdao;
+    private IRechargeSimService rechdao;
 
 
     @Autowired

@@ -1,5 +1,7 @@
 package com.sms.service;
 
-public interface IAdminService {
+import com.sms.entities.Admin;
+
+public interface IAdminService extends Iservice<Admin>{
 
 }

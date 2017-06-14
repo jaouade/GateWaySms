@@ -1,5 +1,7 @@
 package com.sms.service;
 
-public interface ILogHistoryService {
+import com.sms.entities.LogHistory;
+
+public interface ILogHistoryService  extends Iservice<LogHistory>{
 
 }

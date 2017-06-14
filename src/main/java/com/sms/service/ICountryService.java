@@ -1,5 +1,7 @@
 package com.sms.service;
 
-public interface ICountryService {
+import com.sms.entities.Country;
+
+public interface ICountryService extends Iservice<Country>{
 
 }

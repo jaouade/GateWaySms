@@ -1,12 +1,10 @@
 package com.sms.restController;
 
-import java.util.List;
-
-import javax.servlet.http.HttpSession;
-
+import com.sms.entities.Account;
+import com.sms.entities.SmsTemplate;
+import com.sms.service.ISmsTemplateService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,9 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sms.dao.ISmsTemplateDao;
-import com.sms.entities.Account;
-import com.sms.entities.SmsTemplate;
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @RestController
 @RequestMapping("smsTemplate")
@@ -24,8 +21,7 @@ public class RestSmsTemplate {
     private Logger log = Logger.getLogger(RestSmsTemplate.class);
 
     @Autowired
-    @Qualifier("smstemplatedao")
-    private ISmsTemplateDao smsTemplateDao;
+    private ISmsTemplateService smsTemplateDao;
 
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public ResponseEntity<?> create(@RequestBody SmsTemplate smsTemplate, HttpSession session) {

@@ -1,5 +1,8 @@
 package com.sms.test;
 
+import com.sms.config.HibernateConfiguration;
+import com.sms.dao.ICountryDao;
+import com.sms.entities.Country;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,10 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import com.sms.config.HibernateConfiguration;
-import com.sms.dao.ICountryDao;
-import com.sms.entities.Country;
 
 @ContextConfiguration(classes = {HibernateConfiguration.class})
 @RunWith(SpringJUnit4ClassRunner.class)

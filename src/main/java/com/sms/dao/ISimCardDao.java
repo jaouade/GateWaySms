@@ -1,8 +1,8 @@
 package com.sms.dao;
 
 import com.sms.entities.SimCard;
-
-import java.util.List;
+import org.springframework.stereotype.Repository;
+@Repository
 
 public interface ISimCardDao extends IDao<SimCard> {
 

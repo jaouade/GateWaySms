@@ -1,12 +1,9 @@
 package com.sms.restController;
 
-import java.util.List;
-
-import javax.servlet.http.HttpSession;
-
+import com.sms.entities.SimCard;
+import com.sms.service.ISimCardService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sms.dao.ISimCardDao;
-import com.sms.entities.SimCard;
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @RestController
 @RequestMapping("simcard")
@@ -23,8 +20,7 @@ public class RestSimCard {
     private Logger log = Logger.getLogger(RestSimCard.class);
 
     @Autowired
-    @Qualifier("simcarddao")
-    private ISimCardDao simCardDao;
+    private ISimCardService simCardDao;
 
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public ResponseEntity<?> create(@RequestBody SimCard phb, HttpSession session) {

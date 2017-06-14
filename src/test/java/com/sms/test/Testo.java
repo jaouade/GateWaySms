@@ -1,7 +1,10 @@
 package com.sms.test;
 
-import java.util.List;
-
+import com.sms.config.HibernateConfiguration;
+import com.sms.dao.IAccountDao;
+import com.sms.dao.ISmsTemplateDao;
+import com.sms.entities.Account;
+import com.sms.entities.SmsTemplate;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,11 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.sms.config.HibernateConfiguration;
-import com.sms.dao.IAccountDao;
-import com.sms.dao.ISmsTemplateDao;
-import com.sms.entities.Account;
-import com.sms.entities.SmsTemplate;
+import java.util.List;
 
 @ContextConfiguration(classes = {HibernateConfiguration.class})
 @RunWith(SpringJUnit4ClassRunner.class)

@@ -28,6 +28,7 @@ SmsApp.controller('RechargeController',
             console.log(req.data);
             $http(req).then(function (response) {
                 console.log(response.data);
+                $scope.nbSms = "";
                 $.notify(response.data.success, "success");
 
             }, function (error) {

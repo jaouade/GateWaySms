@@ -1,12 +1,10 @@
 package com.sms.restController;
 
-import java.util.List;
-
-import javax.servlet.http.HttpSession;
-
+import com.sms.entities.Account;
+import com.sms.entities.PhoneBook;
+import com.sms.service.IPhoneBookService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,9 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sms.dao.IPhoneBookDao;
-import com.sms.entities.Account;
-import com.sms.entities.PhoneBook;
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @RestController
 @RequestMapping("phoneBook")
@@ -24,8 +21,7 @@ public class RestPhoneBook {
     private Logger log = Logger.getLogger(RestPhoneBook.class);
 
     @Autowired
-    @Qualifier("phonebookdao")
-    private IPhoneBookDao phoneBookDao;
+    private IPhoneBookService phoneBookDao;
 
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public ResponseEntity<?> create(@RequestBody PhoneBook phb, HttpSession session) {

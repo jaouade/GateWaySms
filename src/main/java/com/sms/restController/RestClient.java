@@ -1,13 +1,9 @@
 package com.sms.restController;
 
-import com.sms.dao.*;
 import com.sms.entities.*;
-import com.sms.service.Hash;
-import com.sms.service.JsonService;
-import com.sms.service.MailService;
+import com.sms.service.*;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,23 +23,17 @@ public class RestClient {
     private Logger log = Logger.getLogger(RestClient.class);
 
     @Autowired
-    @Qualifier("accountdao")
-    private IAccountDao accountDao;
+    private IAccountService accountDao;
     @Autowired
-    @Qualifier("tokendao")
-    private ITokenDao tokenDao;
+    private ITokenService tokenDao;
     @Autowired
-    @Qualifier("citydao")
-    private ICityDao cityDao;
+    private IcityService cityDao;
     @Autowired
-    @Qualifier("sectordao")
-    private ISectorDao secDao;
+    private ISectorService secDao;
     @Autowired
-    @Qualifier("smspricedao")
-    private ISmsPriceDao iSmsPriceDao;
+    private ISmsPriceService iSmsPriceDao;
     @Autowired
-    @Qualifier("smsorderdao")
-    private ISmsOrderDao iSmsOrderDao;
+    private ISmsOrderService iSmsOrderDao;
 
 
     @Autowired

@@ -2,17 +2,32 @@ package com.sms.dao;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.jetbrains.annotations.Contract;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.List;
-
-
+@Transactional
+@Repository
+@SuppressWarnings("unchecked")
 public abstract class Dao<T> implements IDao<T> {
 
     private Class<T> clazz;
     @Autowired
     private SessionFactory sessionFactory;
 
+    protected   Session  currentSession() {
+        return sessionFactory.getCurrentSession();
+    }
+    public Dao() {
+        Type t = getClass().getGenericSuperclass();
+        ParameterizedType pt = (ParameterizedType) t;
+
+        clazz = (Class) pt.getActualTypeArguments()[0];
+    }
     @SuppressWarnings("unchecked")
     @Override
     public T get(Long id) {
@@ -37,23 +52,15 @@ public abstract class Dao<T> implements IDao<T> {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<T> getAll() {
-        Session session = sessionFactory.getCurrentSession();
-        session.beginTransaction();
-        @SuppressWarnings("unchecked")
-        List<T> ts = session.createCriteria(getClazz()).list();
-        session.getTransaction().commit();
-        session.close();
-        return ts;
+        return sessionFactory.getCurrentSession().createCriteria(getClazz()).list();
     }
 
 
+    @Contract(pure = true)
     private Class<T> getClazz() {
         return clazz;
-    }
-
-    public void setClazz(Class<T> clazz) {
-        this.clazz = clazz;
     }
 
 

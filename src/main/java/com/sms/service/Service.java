@@ -1,17 +1,15 @@
 package com.sms.service;
 
 import com.sms.dao.IDao;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
+@org.springframework.stereotype.Service
+@Transactional
 public abstract class Service<T> implements Iservice<T> {
 
-    @Autowired
-    @Qualifier("citydao")
-    IDao<T> dao;
-    private Class<T> clazz;
+
+    private IDao<T> dao;
 
     public Service(IDao<T> idao) {
         this.dao = idao;
@@ -48,8 +46,5 @@ public abstract class Service<T> implements Iservice<T> {
         return dao.getAll();
     }
 
-    public String getClazz() {
-        return clazz.getName();
-    }
 
 }

@@ -1,5 +1,7 @@
 package com.sms.service;
 
-public interface IClientService {
+import com.sms.entities.Client;
+
+public interface IClientService  extends Iservice<Client>{
 
 }

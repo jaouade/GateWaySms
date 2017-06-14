@@ -1,5 +1,7 @@
 package com.sms.service;
 
-public interface IDeliveryService {
+import com.sms.entities.Delivery;
+
+public interface IDeliveryService extends Iservice<Delivery> {
 
 }

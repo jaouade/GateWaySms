@@ -1,5 +1,7 @@
 package com.sms.service;
 
-public interface ISectorService {
+import com.sms.entities.Sector;
+
+public interface ISectorService  extends  Iservice<Sector>{
 
 }

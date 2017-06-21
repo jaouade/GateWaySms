@@ -115,7 +115,7 @@
                             <li class="parent"><a href="#"><i
                                     class="icon mdi mdi-dot-circle"></i><span>Phone Book</span></a>
                                 <ul class="sub-menu">
-                                    <li><a href="#!/phoneBook"> <i class="icon mdi mdi-accounts-list"></i> Contacts</a>
+                                    <li><a href="#!/phoneBook/edit/1"> <i class="icon mdi mdi-accounts-list"></i> Contacts</a>
                                     </li>
 
                                 </ul>
